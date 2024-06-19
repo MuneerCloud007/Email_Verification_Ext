@@ -1,0 +1,149 @@
+{
+  "manifest_version": 3,
+  "name": "Chrome_EXT",
+  "version": "0.0.1",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
+  "short_name": "LINKDIN_EXT",
+  "icons": {
+    "128": "image/icon.128.png",
+    "16": "image/icon.16.png",
+    "48": "image/icon.48.png"
+  },
+  "action": {
+    "default_icon": "image/icon.128.png",
+    "default_popup": "popup.html"
+  },
+ 
+  "options_page": "options.html",
+  "permissions": [
+    "identity",
+    "scripting",
+    "storage",
+    "activeTab",
+    "contextMenus",
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "declarativeContent",
+    "webNavigation",
+    "https://*/*", 
+    "http://*/*",
+    "http://localhost:4000/*",
+    "https://www.linkedin.com/sales/*",
+    "http://localhost:4000/api/v1/emailVerifier/post",
+    "https://email-finder-and-email-verification.vercel.app/*",
+    "https://email-finder-and-email-verification.vercel.app/api/v1/emailVerifier/post"
+  ],
+  "host_permissions": [
+    "https://www.linkedin.com/sales/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "externally_connectable": {
+    "matches": [
+      "https://www.linkedin.com/sales/*",
+      "http://localhost:3000/*",
+      "https://email-finder-and-email-verification-1vbn.vercel.app/*"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.linkedin.com/*"
+      ],
+      "css": [
+        "popup.css",
+        "css/style.css",
+        "notes.css",
+        "lib/featherlight/featherlight.min.css",
+        "css/jquery-ui.css",
+        "css/jquery.mentions.css",
+        "css/context-popup.css",
+        "./bootstrap.min.css"
+      ],
+      "js": [
+        "Tab1.js",
+        "Tab2.js",
+        "Tab3.js",
+        "content_script_modal.js",
+        "./bootstrap.min.js",
+        "config.js"
+      ],
+      "type": "module",
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "image/popup/*",
+        "image/icon.24.png",
+        "image/popup/support.png",
+        "image/add-note.png",
+        "image/power-by.png",
+        "image/table-sort.png",
+        "image/color-picker.24.png",
+        "image/text-color.24.png",
+        "image/sgn-search-in-homepage.48.png",
+        "image/modal-loading.gif",
+        "image/Google-Drive-icon.png",
+        "image/share.24.png",
+        "image/shared.24.png",
+        "image/search.24.png",
+        "image/logout.24.png",
+        "image/folder.33.png",
+        "image/folder.54.png",
+        "image/email.30.png",
+        "image/team.33.png",
+        "image/contact.30.png",
+        "image/contact_blue.30.png",
+        "image/revoke.24.png",
+        "image/calendar.24.png",
+        "image/bart-logo.24.png",
+        "image/preferences.24.png",
+        "image/delete.24.png",
+        "image/chat.24.png",
+        "image/comment.3x.png",
+        "image/share-auto.24.png",
+        "image/share-outdated.24.png",
+        "image/opportunity.png",
+        "image/note-timestamp.png",
+        "image/warning.3x.png",
+        "image/crm-logo.24.png",
+        "image/template.png",
+        "image/arrow-right.png",
+        "image/edit-note-icon.png",
+        "image/comment-icon.png",
+        "image/new-comment.png",
+        "image/login-comment-icon.3x.png",
+        "image/note_icon.png",
+        "image/gmail_note_icon.png",
+        "image/arrow_up.png",
+        "image/arrow_down.png",
+        "image/comment_icon.png",
+        "image/circle-right.64.png",
+        "image/right-arrow.64.png",
+        "image/question.64.png",
+        "image/circle-exclamation.64.png",
+        "image/chat.64.png",
+        "image/individual-to-share.42.png",
+        "image/individual-shared.42.png",
+        "image/crm_calendar.33.png",
+        "image/crm_tip.3x.png",
+        "image/search-loading.gif",
+        "image/share_note.3x.png",
+        "image/unshare_note.3x.png",
+        "image/crm-with-signin-list.24.png",
+        "image/crm-with-signin-detail.24.png",
+        "image/crm-with-signin-list.48.png",
+        "image/crm-with-signin-detail.48.png"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.wrapper-body{
+    width: 25vw;
+    padding: 1rem;
+    border: 1px solid  gainsboro;
+    background: azure;
+
+
+}
+
+.header{
+    display: flex;
+    background-color: white;
+    border: 1px solid  gainsboro;
+    padding: 1rem;
+    justify-content: space-between;
+}
+.third-part-wrapper{
+    display: flex;
+    align-items: center;
+    
+    padding: 0.7rem;
+    gap: 1rem;
+    justify-content: space-between;
+    
+
+}
+.person-img>img{
+    height: 70px;
+    border-radius:0.5rem ;
+}
+.person-info{
+    display: block;
+    padding: 0.4rem;
+}
+.contact-info{
+   display: block; 
+}
+.footer{
+    margin-top: 1rem;
+}
+.content-script-sticky{
+    display: flex;
+    flex-direction: column;
+    background-color: purple;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 32px;
+    height: 96px;
+    border-radius: 6px 0px 16px 16px;
+    box-shadow: 0px 2px 6px rgba(65, 76, 88, .14);
+}
+    
+
+.content-script-sticky>img:nth-child(2){
+    margin-top: 4px;
+    align-self: center;
+    height: 24px;
+}
+.content-script-sticky>img:nth-child(1){
+    align-self: center;
+    height: 58px;
+}
+.content_modal_script{
+    position: relative;
+    font-size: 1.4rem;
+    width: 90px;
+    bottom: 80vh;
+    padding: 1rem;
+    height: 100%;
+    left: 0;
+    z-index: 999;
+
+}
+._2SjCZ3E6OKeLUU3ANkia ._2Xt3yDFHz-uBZtjVEL-B ._2d3UR63rqsS_YuSaSBY8[data-v-70d82c64]{
+    align-self:center;
+    height: 58px;
+}
+._2SjCZ3E6OKeLUU3ANkia ._2Xt3yDFHz-uBZtjVEL-B ._2YxiimXyUkJMhe9rNeSc[data-v-70d82c64] {
+    margin-top: 4px;
+    align-self: center;
+    height: 24px;
+}
+.wrapper-body{
+    height: 100% !important;
+    overflow: auto ;
+}
+.wrapper_modal_webscrap{
+    position: relative;
+    z-index: 9999999;
+    background-color: white;
+    bottom: 95vh;
+    left: 0;
+    height: 100vh;
+    width: 25vw;
+    z-index: 100000000000000000;
+}
+
+.thirdPartWebScrap{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.container {
+  
+    
+    width: 80% !important; /* Adjusted to fit within 30-40% of the screen */
+    height: 100%;
+    margin: auto;
+    
+    padding: 0.7rem;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better visibility */
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .back-button {
+    margin-right: 10px;
+  }
+  button{
+    margin-inline: 0.2rem;
+  }
+  .thirdPartWebScrap:hover{
+    background-color: #dad6d6;
+  }
+  
+  .profile-pic {
+    height: 60px;
+    border-radius: 0.7rem;
+    width: 60px;
+    margin-right: 10px;
+  }
+  
+  .name {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .job-title {
+    color: #555;
+  }
+  
+  .social-links {
+    margin-top: 10px;
+  }
+  
+  .social-link {
+    display: inline-block;
+    margin-right: 5px;
+  }
+  
+  .dashboardButton{
+    width: 100% !important;
+    background-color:white !important;
+    color: #4CAF50 !important;
+    border: 2px solid #4CAF50 !important;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px; /* Reduced font size to fit better */
+    margin-bottom: 10px; /* Reduced margin to fit better */
+
+
+
+
+  }
+  .Loading{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+  }
+  .button {
+    background-color:white !important;
+    color: #4CAF50 !important;
+    border: 2px solid #4CAF50 !important;  
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px; /* Reduced font size to fit better */
+    margin-bottom: 10px; /* Reduced margin to fit better */
+  }
+  .no-phone{
+    width: 100% !important;
+  }
+  .contact-info {
+    margin-bottom: 10px; /* Reduced margin to fit better */
+  }
+  
+  .contact-item {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+
+    margin-bottom: 10px;
+  }
+  .plusButton{
+    padding: 0.3rem;
+    border-radius: 0.4rem;
+    color: green;
+    border: 2px solid green;
+    background: white;
+  }
+  
+  .contact-icon {
+    margin-right: 10px;
+  }
+  
+  .contact-text {
+    font-size: 14px; /* Reduced font size to fit better */
+  }
+  
+  .folder {
+    background-color: #ccc;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    font-size: 14px; /* Reduced font size to fit better */
+    margin-bottom: 10px; /* Reduced margin to fit better */
+    display: flex;
+    align-items: center;
+  }
+  
+  .folder-icon {
+    margin-right: 10px;
+  }
+  
+  .folder-text {
+    font-size: 14px; /* Reduced font size to fit better */
+  }
+  

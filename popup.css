@@ -1,0 +1,15 @@
+.mail_search{
+    cursor: pointer;
+    margin-inline: 1rem;
+}
+
+.wrapper-popup{
+   
+    padding: 1rem;
+    width: 100%;
+
+}
+.wrapper{
+    display: flex;
+    gap: 0.5rem;
+}
