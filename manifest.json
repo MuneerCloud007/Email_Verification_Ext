@@ -69,8 +69,7 @@
         "Tab2.js",
         "Tab3.js",
         "content_script_modal.js",
-        "./bootstrap.min.js",
-        "config.js"
+        "./bootstrap.min.js"
       ],
       "type": "module",
       "run_at": "document_end"
