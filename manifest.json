@@ -65,8 +65,9 @@
         "./bootstrap.min.css"
       ],
       "js": [
-        "Tab2.js",
-        "Tab3.js",
+        "utils.js",
+        "FirstLayout.js",
+        "SecondLayout.js",
         "content_script_modal.js",
         "./bootstrap.min.js"
       ],
