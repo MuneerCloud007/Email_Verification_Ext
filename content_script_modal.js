@@ -522,7 +522,7 @@
 
     //THis code for second Page 
     const secondPageWebscrap = (data) => {
-        const { name: Name, link, company, position, img } = data;
+        const { name: Name, link, company, position, img,id } = data;
         // Create the container div
         const firstLayerHeader = headerWebscrap();
         const container = document.createElement('div');
@@ -579,7 +579,7 @@
         openDashboardButton.onclick = () => {
             console.log("I am in screen");
             console.log(setting);
-            chrome.runtime.sendMessage({ message: "newTab", link: "https://email-finder-and-email-verification-1vbn.vercel.app/linkedScrap/dashboard" }, (response) => {
+            chrome.runtime.sendMessage({ message: "newTab", link: `https://email-finder-and-email-verification-1vbn.vercel.app/linkedScrap/dashboard/${id}` }, (response) => {
                 console.log(response);
             })
 
