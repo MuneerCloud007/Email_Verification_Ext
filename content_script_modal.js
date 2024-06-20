@@ -139,8 +139,13 @@
 
             //UPto know header default part
             const thirdPart = document.createElement("div");
+            thirdPart.className = "login-webscrap";
+
+            
             thirdPart.innerHTML = `
-           <div class="container mt-5">
+          <div class="container mt-5 login-container" style="
+    display: flex;
+">
         <div class="text-center">
             <p>Please login from salesSql website</p>
             <div class="d-flex justify-content-center mt-4">
@@ -149,6 +154,7 @@
             </div>
         </div>
     </div>
+       
             `
 
 
@@ -395,7 +401,8 @@
                     console.log("plus");
                     console.log(e.target);
                     document.getElementsByClassName("wrapper-body")[0]?.remove()
-                    const data = { name, link, company, position, img };
+                    console.log(companyData[link][index + 1]["_id"]);
+                    const data = { name, link, company, position, img,id:companyData[link][index + 1]["_id"] };
 
 
 
@@ -517,11 +524,11 @@
         // Create the container div
         const firstLayerHeader = headerWebscrap();
         const container = document.createElement('div');
-        container.className = 'container';
+        container.className = 'container-secondPageWebscrap';
 
         // Create the header div
         const header = document.createElement('div');
-        header.className = 'header';
+        header.className = 'header-one-secondPageWebscrap';
 
         // Create the back button
         const backButton = document.createElement('a');
@@ -746,6 +753,11 @@
 
             document.body.insertBefore(webscrap_modal, document.getElementsByClassName("content_modal_script")[0]);
 
+            //This the scrolling logic which work in bases of it 
+
+
+            checkUrlChange();
+
                 console.log("Setting up scroll event listener");
                 await delay(2000);
 
@@ -763,14 +775,32 @@
         })
 
 
-        // let divElement = document.getElementsByClassName("p4 _vertical-scroll-results_1igybl")[0];
-        // console.log(divElement);
-
-        // divElement.addEventListener("scroll", (e) => {
-        //     document.getElementsByClassName("content_modal_script")[0]?.remove();
-        //     console.log("I am inside event")
-        //     console.log(e.target);
-        // })
+        function handleUrlChange(newUrl) {
+            console.log('URL changed to:', newUrl);
+            lastScrollTop=0;
+            // Your logic here
+        }
+        
+        // Function to check and act on URL changes
+        function checkUrlChange() {
+            const currentUrl = window.location.href;
+            if (currentUrl !== lastUrl) {
+                lastUrl = currentUrl;
+                handleUrlChange(currentUrl);
+            }
+        }
+        
+        // Store the last URL
+        let lastUrl = window.location.href;
+        
+        // Create a MutationObserver to detect changes in the document
+        const observer = new MutationObserver(checkUrlChange);
+        
+        // Start observing changes in the document
+        observer.observe(document, { childList: true, subtree: true });
+        
+        // Also check URL change on popstate events (back/forward navigation)
+        window.addEventListener('popstate', checkUrlChange);
 
         console.log("I am in div element!!!");
 
@@ -853,6 +883,7 @@
         if (location.href !== "https://www.linkedin.com/sales/login") {
             // Function to execute LinkedIn-specific content script
             executionOfContent_script_Linkedin();
+            console.log("Execution script is execute this is new url");
 
         }
     }, 4000); // Adjust delay time (4000 milliseconds) as needed
@@ -862,3 +893,4 @@
 
 
 })();
+

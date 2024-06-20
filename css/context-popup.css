@@ -11,6 +11,13 @@
 
 
 }
+.login-webscrap{
+  height: 100%;
+}
+.login-container{
+  display: flex;
+  align-items: center;
+}
 
 .header{
     display: flex;
@@ -34,8 +41,13 @@
     border-radius:0.5rem ;
 }
 .person-info{
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 0.4rem;
+    width: 100%;
+}
+.person-info>.wrapper{
+width: 100%;
 }
 .contact-info{
    display: block; 
@@ -98,14 +110,14 @@
     background-color: white;
     bottom: 95vh;
     left: 0;
-    height: 100vh;
-    width: 25vw;
+    height: 90vh;
+    width: 22vw;
     z-index: 100000000000000000;
 }
 
 .thirdPartWebScrap{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 0.5rem;
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
@@ -175,12 +187,27 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px; /* Reduced font size to fit better */
-    margin-bottom: 10px; /* Reduced margin to fit better */
+    margin-bottom: 1.5rem; /* Reduced margin to fit better */
+    margin-top: 1.5rem;
 
 
 
 
   }
+  .name{
+    text-align: start;
+    padding-left: 0.1rem;
+  }
+  .job-title{
+    text-align: start;
+
+    padding-left: 0.2rem;
+  }
+  .header-one-secondPageWebscrap>img{
+    height: 75px;
+    width: 75px;
+}
+  
   .Loading{
 
     display: flex;
@@ -209,12 +236,11 @@
   
   .contact-item {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    width: 80%;
-    margin: auto;
-
-    margin-bottom: 10px;
+    width: 90%;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
   }
   .plusButton{
     padding: 0.3rem;
@@ -222,8 +248,20 @@
     color: green;
     border: 2px solid green;
     background: white;
+    margin-left: auto;
   }
-  
+  .header-one-secondPageWebscrap{
+    display: flex;
+    text-align: end;
+    height: 15%;
+    padding-top: 1rem;
+    align-items: center;
+  }
+  .container-secondPageWebscrap{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
   .contact-icon {
     margin-right: 10px;
   }

@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log(message);
     if (message.message === "postData") {
         console.log("postData received:", message.data);
-        postDataToServer(message.data,message.accessToken)
+        postDataToServer(message.data, message.accessToken)
             .then(data => {
                 console.log("postData response:", data);
                 sendResponse({ success: true, data });
@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     else if (message.message === "setDataLocalChromeApi") {
         console.log(message.data);
-        chrome.storage.local.set({"user":message.data} , () => {
+        chrome.storage.local.set({ "user": message.data }, () => {
             if (chrome.runtime.lastError) {
                 sendResponse({ success: false, error: chrome.runtime.lastError.message });
             } else {
@@ -48,20 +48,20 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             if (chrome.runtime.lastError) {
                 sendResponse({ success: false, error: chrome.runtime.lastError.message });
             } else {
-                if(result["user"]){
+                if (result["user"]) {
 
-                sendResponse({ success: true, data: result["user"] });
+                    sendResponse({ success: true, data: result["user"] });
                 }
-                else{
-                    sendResponse({ success: true});
+                else {
+                    sendResponse({ success: true });
 
 
                 }
             }
         });
         return true; // Keeps the message channel open for sendResponse
-    } 
-    else if(message.message == "LogoutChromeApi") {
+    }
+    else if (message.message == "LogoutChromeApi") {
 
         console.log("I am in logout chrome api area u there");
 
@@ -77,9 +77,23 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         return true; // Keeps the message channel open for sendResponse
 
     }
-    else if(message.message == 'newTab'){
+    else if (message.message == 'newTab') {
+        let createTabDebounced = debounce(chrome.tabs.create, 1000); // Debounce with 1 second delay
+
+        function debounce(func, delay) {
+            let timeoutId;
+            return function () {
+                const context = this;
+                const args = arguments;
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    func.apply(context, args);
+                }, delay);
+            };
+        }
+
         console.log("NEW TABS");
-     chrome.tabs.create({ url:message.link });
+        createTabDebounced({ url: message.link });
         sendResponse({ success: true });
         return true; // Keeps the message channel open for sendResponse
 
@@ -112,37 +126,37 @@ chrome.action.onClicked.addListener((tab) => {
     }
 });
 
-chrome.runtime.onMessageExternal.addListener(async(message, sender, sendResponse) => {
+chrome.runtime.onMessageExternal.addListener(async (message, sender, sendResponse) => {
     console.log('Message received from external web app:', message);
 
     console.log(message.data);
     if (message.action === 'setData') {
-        const value=await new Promise((resolve, reject) => {
-        
-            chrome.storage.local.set({"user":message.data} , () => {
+        const value = await new Promise((resolve, reject) => {
+
+            chrome.storage.local.set({ "user": message.data }, () => {
                 if (chrome.runtime.lastError) {
                     reject({ success: false, error: chrome.runtime.lastError.message });
                 } else {
-                    resolve({ success: true,message:"data has been setted for login" });
+                    resolve({ success: true, message: "data has been setted for login" });
                 }
             });
-        
-        
-        
+
+
+
         }
-        
+
         )
-           
 
-              
 
-            console.log(value)
-      sendResponse({ success: true, value });
+
+
+        console.log(value)
+        sendResponse({ success: true, value });
     }
-    else if(message.action === 'logout'){
-        console.log("Please check the logout !!!!");    
-       const value= await new Promise((resolve, reject) => {
-          
+    else if (message.action === 'logout') {
+        console.log("Please check the logout !!!!");
+        const value = await new Promise((resolve, reject) => {
+
             chrome.storage.local.remove("user", (res) => {
                 console.log(chrome.runtime.lastError)
                 console.log(res)
@@ -153,31 +167,31 @@ chrome.runtime.onMessageExternal.addListener(async(message, sender, sendResponse
                 }
             });
         }
-        
-        
+
+
         )
         console.log(value);
 
 
 
-            
 
-        
-      const data = { key: 'Logout successfully !!!!' };
-      sendResponse({ success: true, data });
+
+
+        const data = { key: 'Logout successfully !!!!' };
+        sendResponse({ success: true, data });
 
     }
-    
+
     else {
-      sendResponse({ success: false, error: 'Unknown action' });
+        sendResponse({ success: false, error: 'Unknown action' });
     }
     return true;
-  });
-  
-  
+});
 
 
-async function postDataToServer(data,accessToken) {
+
+
+async function postDataToServer(data, accessToken) {
     const postData = { ...data };
     const arr = postData["name"].split(" ");
     postData["firstName"] = arr[0];
@@ -190,7 +204,7 @@ async function postDataToServer(data,accessToken) {
     const apiUrl = 'https://email-finder-and-email-verification.vercel.app/api/v1/emailVerifier/post';
 
     console.log(postData);
-   
+
 
     // Prepare the headers
     const headers = {
@@ -259,7 +273,7 @@ async function getAllEmailVerifierData(user) {
         // Check if the response is ok
         console.log(response);
         if (!response.ok) {
-            if(response.statusText == "Unauthorized"){
+            if (response.statusText == "Unauthorized") {
                 console.log(response.statusText);
                 let response2 = await fetch(apiUrl, fetchOptions);
 
