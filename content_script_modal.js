@@ -750,12 +750,15 @@
 
 
             webscrap_modal.appendChild(fullData);
+            
 
 
 
             document.body.insertBefore(webscrap_modal, document.getElementsByClassName("content_modal_script")[0]);
 
             //This the scrolling logic which work in bases of it 
+            window.addEventListener('popstate', checkUrlChange);
+
 
 
             checkUrlChange();
@@ -802,7 +805,6 @@
         observer.observe(document, { childList: true, subtree: true });
         
         // Also check URL change on popstate events (back/forward navigation)
-        window.addEventListener('popstate', checkUrlChange);
 
         console.log("I am in div element!!!");
 
