@@ -141,7 +141,7 @@
             const thirdPart = document.createElement("div");
             thirdPart.className = "login-webscrap";
 
-            
+
             thirdPart.innerHTML = `
           <div class="container mt-5 login-container" style="
     display: flex;
@@ -404,7 +404,7 @@
                     console.log(e.target);
                     document.getElementsByClassName("wrapper-body")[0]?.remove()
                     console.log(companyData[link][index + 1]["_id"]);
-                    const data = { name, link, company, position, img,id:companyData[link][index + 1]["_id"] };
+                    const data = { name, link, company, position, img, id: companyData[link][index + 1]["_id"] };
 
 
 
@@ -522,7 +522,7 @@
 
     //THis code for second Page 
     const secondPageWebscrap = (data) => {
-        const { name: Name, link, company, position, img,id } = data;
+        const { name: Name, link, company, position, img, id } = data;
         // Create the container div
         const firstLayerHeader = headerWebscrap();
         const container = document.createElement('div');
@@ -576,7 +576,7 @@
         openDashboardButton.classList.add("btn-outline-success")
         openDashboardButton.classList.add("btn-lg");
         openDashboardButton.textContent = 'Open in dashboard';
-        openDashboardButton.onclick = () => {
+        openDashboardButton.onclick = debounce(() => {
             console.log("I am in screen");
             console.log(setting);
             chrome.runtime.sendMessage({ message: "newTab", link: `https://email-finder-and-email-verification-1vbn.vercel.app/linkedScrap/dashboard/${id}` }, (response) => {
@@ -584,7 +584,7 @@
             })
 
 
-        }
+        }, 300)
 
         // Create the contact info div
         const contactInfo = document.createElement('div');
@@ -700,7 +700,20 @@
         return container;
     }
 
+    // Debounce function definition
+    function debounce(func, delay) {
+        let timeoutId;
 
+        return function () {
+            const context = this;
+            const args = arguments;
+
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                func.apply(context, args);
+            }, delay);
+        };
+    }
 
 
 
@@ -733,7 +746,7 @@
 
 
         divScript.addEventListener("click", async (e) => {
-            document.getElementsByClassName("wrapper_modal_webscrap").length>0 && document.getElementsByClassName("wrapper_modal_webscrap")?.map((vl)=>vl?.remove())
+            document.getElementsByClassName("wrapper_modal_webscrap").length > 0 && document.getElementsByClassName("wrapper_modal_webscrap")?.map((vl) => vl?.remove())
             const webscrap_modal = document.createElement("div");
             webscrap_modal.className = "wrapper_modal_webscrap";
             const loading = Loader();
@@ -750,7 +763,7 @@
 
 
             webscrap_modal.appendChild(fullData);
-            
+
 
 
 
@@ -763,29 +776,29 @@
 
             checkUrlChange();
 
-                console.log("Setting up scroll event listener");
-                await delay(2000);
+            console.log("Setting up scroll event listener");
+            await delay(2000);
 
-                // Example: Check if the scrollable div is still present
-                let divElement = document.getElementsByClassName("p4 _vertical-scroll-results_1igybl")[0];
-                console.log("Scrollable div:", divElement);
+            // Example: Check if the scrollable div is still present
+            let divElement = document.getElementsByClassName("p4 _vertical-scroll-results_1igybl")[0];
+            console.log("Scrollable div:", divElement);
 
-                if (divElement) {
-                    console.log("Element found:", divElement);
+            if (divElement) {
+                console.log("Element found:", divElement);
 
-                    // Attach debounced scroll event listener
-                    divElement.addEventListener("scroll", debouncedHandleScroll);
-                }
+                // Attach debounced scroll event listener
+                divElement.addEventListener("scroll", debouncedHandleScroll);
+            }
 
         })
 
 
         function handleUrlChange(newUrl) {
             console.log('URL changed to:', newUrl);
-            lastScrollTop=0;
+            lastScrollTop = 0;
             // Your logic here
         }
-        
+
         // Function to check and act on URL changes
         function checkUrlChange() {
             const currentUrl = window.location.href;
@@ -794,86 +807,72 @@
                 handleUrlChange(currentUrl);
             }
         }
-        
+
         // Store the last URL
         let lastUrl = window.location.href;
-        
+
         // Create a MutationObserver to detect changes in the document
         const observer = new MutationObserver(checkUrlChange);
-        
+
         // Start observing changes in the document
         observer.observe(document, { childList: true, subtree: true });
-        
+
         // Also check URL change on popstate events (back/forward navigation)
 
         console.log("I am in div element!!!");
 
-        
-            // Debounce function definition
-            function debounce(func, delay) {
-                let timeoutId;
-
-                return function () {
-                    const context = this;
-                    const args = arguments;
-
-                    clearTimeout(timeoutId);
-                    timeoutId = setTimeout(() => {
-                        func.apply(context, args);
-                    }, delay);
-                };
-            }
-
-            // Define the debounce delay (e.g., 1000 milliseconds)
-            const debounceDelay = 1000;
-
-            // Variable to store the last scroll position
-
-            // Function to handle scroll events asynchronously
-            async function handleScroll(e) {
-                let currentScrollTop = document.getElementsByClassName("p4 _vertical-scroll-results_1igybl")[0].scrollTop
-                console.log(currentScrollTop);
-                console.log(lastScrollTop);
-
-                if (currentScrollTop > lastScrollTop) {
-                    // Scrolling downwards
-                    console.log("Scrolling downwards");
-
-                    // Example: Get reference to scrollable div
-                    let divElement = document.getElementsByClassName("p4 _vertical-scroll-results_1igybl")[0];
-                    console.log("Scrollable div:", divElement);
-                    const content_script=document.getElementsByClassName("content_modal_script")[0];
-                    console.log(content_script);
-                    console.log(content_script.style.display);
-                    console.log(content_script.style.display=="none");
-
-                    if (divElement && content_script.style.display=="none") {
-                        document.getElementsByClassName("wrapper_modal_webscrap").length>0 && Array.from(document.getElementsByClassName("wrapper_modal_webscrap"))?.map((vl)=>vl?.remove())
-                        const webscrap_modal = document.createElement("div");
-                        webscrap_modal.className = "wrapper_modal_webscrap";
-                        const loading = Loader();
-                        webscrap_modal.appendChild(loading);
-                        document.body.insertBefore(webscrap_modal, document.getElementsByClassName("content_modal_script")[0]);
-                        const fullData = await webScrapFun();
-                        document.getElementsByClassName("Loading")[0]?.remove();
-
-                        webscrap_modal.appendChild(fullData);
-
-                        document.body.insertBefore(webscrap_modal, document.getElementsByClassName("content_modal_script")[0]);
 
 
-                    }
+        // Define the debounce delay (e.g., 1000 milliseconds)
+        const debounceDelay = 1000;
+
+        // Variable to store the last scroll position
+
+        // Function to handle scroll events asynchronously
+        async function handleScroll(e) {
+            let currentScrollTop = document.getElementsByClassName("p4 _vertical-scroll-results_1igybl")[0].scrollTop
+            console.log(currentScrollTop);
+            console.log(lastScrollTop);
+
+            if (currentScrollTop > lastScrollTop) {
+                // Scrolling downwards
+                console.log("Scrolling downwards");
+
+                // Example: Get reference to scrollable div
+                let divElement = document.getElementsByClassName("p4 _vertical-scroll-results_1igybl")[0];
+                console.log("Scrollable div:", divElement);
+                const content_script = document.getElementsByClassName("content_modal_script")[0];
+                console.log(content_script);
+                console.log(content_script.style.display);
+                console.log(content_script.style.display == "none");
+
+                if (divElement && content_script.style.display == "none") {
+                    document.getElementsByClassName("wrapper_modal_webscrap").length > 0 && Array.from(document.getElementsByClassName("wrapper_modal_webscrap"))?.map((vl) => vl?.remove())
+                    const webscrap_modal = document.createElement("div");
+                    webscrap_modal.className = "wrapper_modal_webscrap";
+                    const loading = Loader();
+                    webscrap_modal.appendChild(loading);
+                    document.body.insertBefore(webscrap_modal, document.getElementsByClassName("content_modal_script")[0]);
+                    const fullData = await webScrapFun();
+                    document.getElementsByClassName("Loading")[0]?.remove();
+
+                    webscrap_modal.appendChild(fullData);
+
+                    document.body.insertBefore(webscrap_modal, document.getElementsByClassName("content_modal_script")[0]);
+
+
                 }
-
-                // Update last scroll position
-                lastScrollTop = currentScrollTop;
             }
 
-            // Debounced scroll event handler
-            const debouncedHandleScroll = debounce(handleScroll, debounceDelay);
+            // Update last scroll position
+            lastScrollTop = currentScrollTop;
+        }
 
-            // Delay execution to ensure elements are loaded
-         
+        // Debounced scroll event handler
+        const debouncedHandleScroll = debounce(handleScroll, debounceDelay);
+
+        // Delay execution to ensure elements are loaded
+
 
 
 
