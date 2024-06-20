@@ -148,15 +148,17 @@
 ">
         <div class="text-center">
             <p>Please login from salesSql website</p>
-            <div class="d-flex justify-content-center mt-4">
-                <button class="btn btn-primary mx-2">Login</button>
-                <button class="btn btn-secondary mx-2">Register</button>
-            </div>
+            
         </div>
     </div>
        
             `
 
+
+            // <div class="d-flex justify-content-center mt-4">
+            //     <button class="btn btn-primary mx-2">Login</button>
+            //     <button class="btn btn-secondary mx-2">Register</button>
+            // </div>
 
             wrapperBody.appendChild(header);
             wrapperBody.appendChild(thirdPart);
