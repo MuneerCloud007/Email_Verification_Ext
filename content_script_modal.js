@@ -1,8 +1,6 @@
 (() => {
 
-    // await chrome.runtime.sendMessage({ message: "input_url", url: tab_url, lastPage: 2 });
 
-    
 
 
 

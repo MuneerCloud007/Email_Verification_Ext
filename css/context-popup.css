@@ -233,7 +233,13 @@ width: 100%;
   .contact-info {
     margin-bottom: 10px; /* Reduced margin to fit better */
   }
-  
+  .second-part{
+    margin-top: 0.3rem;
+    margin-bottom: 0.6rem;
+  }
+  #staticBackdrop{
+    width: 25vw;
+  }
   .contact-item {
     display: flex;
     justify-content: space-between;

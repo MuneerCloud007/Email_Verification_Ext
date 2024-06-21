@@ -59,7 +59,6 @@
 
         async () => {
             console.log("I am in screen");
-            alert("HELLO");
             window.open(`https://email-finder-and-email-verification-1vbn.vercel.app/linkedScrap/dashboard/${id}`, '_blank');
 
     

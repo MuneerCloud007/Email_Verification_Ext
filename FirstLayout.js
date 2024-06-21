@@ -82,6 +82,32 @@ display: flex;
 
 }
 
+function buildRadioForm(arr) {
+    const form = document.createElement('form');
+
+    arr.forEach((vl) => {
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.id = vl.name.toLowerCase().replace(/\s/g, ''); // Generate unique id
+        input.name = 'folder';
+        input.value = vl.name;
+
+        const label = document.createElement('label');
+        label.setAttribute('for', input.id);
+        label.textContent = vl.name;
+
+        // Line break for formatting (optional)
+        const br = document.createElement('br');
+
+        // Append input, label, and line break to form
+        form.appendChild(input);
+        form.appendChild(label);
+        form.appendChild(br);
+    });
+
+    // return the form object
+    return form;
+}
 
 
 const headerWebscrap = () => {
@@ -98,7 +124,7 @@ const headerWebscrap = () => {
         console.log("I am in screen");
         window.open(`https://email-finder-and-email-verification-1vbn.vercel.app/linkedScrap/dashboard`, '_blank');
 
-        
+
 
 
     }
@@ -138,12 +164,77 @@ const headerWebscrap = () => {
     header.appendChild(buttonsContainer);
     return header;
 }
+
 const secondPartWebscrap = () => {
     const secondPart = document.createElement('div');
+    const arr = [
+        { name: "Folder1" },
+        { name: "Folder2" },
+        { name: "Folder3" },
+        { name: "Folder4" },
+        { name: "Folder5" },
+        { name: "Folder6" }
+    ];
+
     secondPart.classList.add('second-part');
-    const selectAllP = document.createElement('p');
-    selectAllP.textContent = 'Select all';
-    secondPart.appendChild(selectAllP);
+    // const selectAllP = document.createElement('p');
+
+    // selectAllP.innerHTML = `
+    //   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+    //   id="folder_button_modal"
+    //   >
+    //     Select a Folder
+    //   </button>
+  
+    //   <!-- Modal -->
+    //   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    //     <div class="modal-dialog">
+    //       <div class="modal-content">
+    //         <div class="modal-header">
+    //           <h5 class="modal-title" id="staticBackdropLabel">Please select a Folder</h5>
+    //           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    //         </div>
+    //         <div class="modal-body">
+    //           <!-- Folder options dynamically generated -->
+    //           ${arr.map(item => `
+    //             <div>
+    //               <input type="radio" id="${item.name}" name="folder" value="${item.name}">
+    //               <label for="${item.name}">${item.name}</label>
+    //             </div>
+    //           `).join('')}
+    //         </div>
+    //         <div class="modal-footer">
+    //           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    //             <button id="saveButton" type="button" class="btn btn-primary">Save</button>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // `;
+
+    // secondPart.appendChild(selectAllP);
+    // console.log(secondPart);
+    // // Example save button functionality
+    // const saveButton = secondPart.querySelector('#saveButton');
+    // saveButton.addEventListener('click', function () {
+
+    //     const selectedFolder = document.querySelector('input[name="folder"]:checked');
+    //     const folder_button_modal=document.getElementById("folder_button_modal");
+    //     if (selectedFolder) {
+    //         folder_button_modal.innerText=selectedFolder.value
+    //         console.log('Selected folder:', selectedFolder.value);
+    //     } else {
+    //         console.log('No folder selected');
+    //     }
+    //     const radioButtons = document.querySelectorAll('input[name="folder"]');
+    //     radioButtons.forEach(radio => {
+    //       radio.checked = false;
+    //     });
+
+
+    // });
+   
+
     return secondPart;
 }
 
@@ -383,9 +474,8 @@ const WebScrapFirstPage = async (filteredArray) => {
     wrapperBody.classList.add('wrapper-body');
 
     const header = headerWebscrap();
-    console.log(filteredArray);
+    const secondPart = secondPartWebscrap();
     const thirdPart = await thirdPartWebScrap(filteredArray);
-
     const footer = footerWebScrap();
 
 
@@ -395,6 +485,7 @@ const WebScrapFirstPage = async (filteredArray) => {
 
 
     wrapperBody.appendChild(header);
+    wrapperBody.appendChild(secondPart);
     wrapperBody.appendChild(thirdPart);
     wrapperBody.appendChild(footer);
 
